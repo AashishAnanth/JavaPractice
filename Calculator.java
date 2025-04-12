@@ -33,7 +33,7 @@ public class Calculator {
                 case "divide":
                     System.out.println("8/4=2");
                 default:
-                    System.out.println("Default");
+                    System.out.println("Default option");
             }
         }
 
