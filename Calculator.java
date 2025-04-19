@@ -2,39 +2,63 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
+        final String error = "Invalid input. Terminating...";
         Scanner input = new Scanner(System.in);
         System.out.println("List of operations: add subtract multiply divide alphabetize");
 
         System.out.print("Enter an operation: ");
-        String op = input.next();
-        input.nextLine(); 
+        String op = input.next().toLowerCase();
+        input.nextLine();
 
-        System.out.println("You chose: " + op);
-
-        if (op.equals("alphabetize")) { 
+        if (op.equals("alphabetize")) {
             System.out.print("Enter two words: ");
-            String words = input.nextLine(); 
-            System.out.println("You chose: " + words);
-        }
-        else {
-            System.out.print("Enter two integers: ");
-            input.nextLine();
-            String integers = input.nextLine();
-            System.out.println("You chose: " + integers);
 
-            switch (op) {
-                case "add":
-                    System.out.println("2+3=5");
-                    break; 
-                case "subtract":
-                    System.out.println("10-8=2");
-                case "multiply":
-                    System.out.println("4*2=8");
-                case "divide":
-                    System.out.println("8/4=2");
-                default:
-                    System.out.println("Default option");
+            if (input.hasNext()) {
+                String word1 = input.next();
+                if (input.hasNext()) {
+                    String word2 = input.next();
+                    int check = word1.toLowerCase().compareTo(word2.toLowerCase());
+                    if (check > 0) {
+                        System.out.println("Answer: " + word2 + " comes before " + word1 + " alphabetically.");
+                    } else if (check < 0) {
+                        System.out.println("Answer: " + word1 + " comes before " + word2 + " alphabetically.");
+                    } else {
+                        System.out.println("Answer: Chicken or Egg.");
+                    }
+                }
             }
+        } else if (op.equals("add") || op.equals("subtract")) {
+            System.out.print("Enter two integers: ");
+
+            if (input.hasNextInt()) {
+                int num1 = input.nextInt();
+                if (input.hasNextInt()) {
+                    int num2 = input.nextInt();
+                    int answer = op.equals("add") ? num1 + num2 : num1 - num2;
+                    System.out.println("Answer: " + answer);
+                } else {
+                    System.out.println(error);
+                }
+            } else {
+                System.out.println(error);
+            }
+        } else if (op.equals("multiply") || op.equals("divide")) {
+            System.out.print("Enter two doubles: ");
+
+            if (input.hasNextDouble()) {
+                double double1 = input.nextDouble();
+                if (input.hasNextDouble()) {
+                    double double2 = input.nextDouble();
+                    double answer = op.equals("multiply") ? double1 * double2 : double1 / double2;
+                    System.out.printf("Answer: %.2f%n", answer);
+                } else {
+                    System.out.println(error);
+                }
+            } else {
+                System.out.println(error);
+            }
+        } else {
+            System.out.println(error);
         }
 
         input.close();
