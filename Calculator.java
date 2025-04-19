@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Calculator {
     public static void main(String[] args) {
-        final String error = "Invalid input. Terminating...";
+        final String error = "Invalid input entered. Terminating...";
         Scanner input = new Scanner(System.in);
         System.out.println("List of operations: add subtract multiply divide alphabetize");
 
@@ -64,3 +64,4 @@ public class Calculator {
         input.close();
     }
 }
+// Status: Complete!
